@@ -5,12 +5,13 @@ class Deal < ActiveRecord::Base
 	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png','image/gif','image/jpg']
 
-  validates :publish_date, presence: true, exclusion: {in: Deal.pluck(:publish_date), message: "already assigned"}
+  validates :publish_date, presence: true, exclusion: {in: Deal.pluck(:publish_date), message: "already assigned"}, on: :create
+  validates :publish_date, presence: true, exclusion: {in: Deal.pluck(:publish_date), message: "already assigned"}, on: :update, :if => :publish_date_changed?
   validates :price, presence: true
   validates :discounted_price, presence: true
   validates :title, presence: true
   validates :description, presence: true
-  validates :quantity, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :quantity, presence: true, numericality: {only_integer: true, greater_than: -1}
   validates :image, presence: true
   validate :publish_date_greater_than_or_equal_to_today
   after_create :update_status

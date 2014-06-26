@@ -9,6 +9,8 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage, Deal
+        can :manage, UserDeal
+        can :manage, User
       else
         cannot :access, :rails_admin
       end

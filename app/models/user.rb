@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def can_buy?
-		self.deals.where(status: "published").blank?
+	def can_buy?(deal)
+		self.deals.where(status: "published").blank? && deal.quantity > 0
 	end
 end

@@ -27,7 +27,7 @@
         <td><%= image_tag(deal.image.url('medium')) %></td>
         <td>
           <%= (link_to "BUY NOW",
-                      buy_deal_path(deal), data:{confirm: "Are you sure to buy now?"}, :class => 'btn btn-mini btn-danger')  if  current_user.can_buy?%>
+                      buy_deal_path(deal), data:{confirm: "Are you sure to buy now?"}, :class => 'btn btn-mini btn-danger')  if  current_user.can_buy?(deal)%>
         </td>
       </tr>
     <% end %>
