@@ -1,0 +1,36 @@
+<%- model_class = Deal -%>
+<div class="page-header">
+  <h1>Deal Of The Day</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:discounted_price) %></th>
+      <th><%= model_class.human_attribute_name(:quantity) %></th>
+      <th><%= model_class.human_attribute_name(:image) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deals.each do |deal| %>
+      <tr>
+        <td><%= link_to deal.id, deal_path(deal) %></td>
+        <td><%= deal.title %></td>
+        <td><%= deal.description %></td>
+        <td><%= deal.price %></td>
+        <td><%= deal.discounted_price %></td>
+        <td><%= deal.quantity %></td>
+        <td><%= image_tag(deal.image.url('medium')) %></td>
+        <td>
+          <%= (link_to "BUY NOW",
+                      buy_deal_path(deal), data:{confirm: "Are you sure to buy now?"}, :class => 'btn btn-mini btn-danger')  if  current_user.can_buy?%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= csrf_meta_tags %>

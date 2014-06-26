@@ -1,0 +1,41 @@
+<%- model_class = Deal -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @deal.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @deal.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @deal.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discounted_price) %>:</strong></dt>
+  <dd><%= @deal.discounted_price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
+  <dd><%= @deal.quantity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:publish_date) %>:</strong></dt>
+  <dd><%= @deal.publish_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @deal.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_file_name) %>:</strong></dt>
+  <dd><%= @deal.image_file_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_content_type) %>:</strong></dt>
+  <dd><%= @deal.image_content_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_file_size) %>:</strong></dt>
+  <dd><%= @deal.image_file_size %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_updated_at) %>:</strong></dt>
+  <dd><%= @deal.image_updated_at %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              deals_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_deal_path(@deal), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              deal_path(@deal),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
